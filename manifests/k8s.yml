@@ -32,4 +32,4 @@ spec:
     targetPort: 8501
   selector:
     app: mimodelo-server
-  type: LoadBalancer
+  type: ClusterIP
