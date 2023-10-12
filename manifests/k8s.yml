@@ -2,21 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mimodelo-deployment
+  name: my-model-deployment
 spec:
   selector:
     matchLabels:
-      app: mimodelo-server
+      app: my-model-server
   replicas: 1
   template:
     metadata:
       labels:
-        app: mimodelo-server
+        app: my-model-server
     spec:
       containers:
-      - name: mimodelo-container
-        #image: gcr.io/tensorflow-serving/resnet 
-        image: docker.io/sergiojc/my-model
+      - name: my-model-container
+        image: docker.io/{docker_user}/{model_name}:{github.sha} 
         ports:
         - containerPort: 80
 ---
@@ -24,12 +23,12 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    run: mimodelo-service
-  name: mimodelo-service
+    run: my-model-service
+  name: my-model-service
 spec:
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: mimodelo-server
-  type: ClusterIP
+    app: my-model-server
+  type: LoadBalancer
