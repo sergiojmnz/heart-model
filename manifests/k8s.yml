@@ -16,7 +16,7 @@ spec:
       containers:
       - name: mimodelo-container
         #image: gcr.io/tensorflow-serving/resnet 
-        image: docker.io/sergiojc/my-model
+        image: docker.io/sergiojc/mimodelo
         ports:
         - containerPort: 8501
 ---
